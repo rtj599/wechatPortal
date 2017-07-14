@@ -196,7 +196,14 @@
             <artifactId>poi-ooxml</artifactId>  
             <version>3.9</version>  
         </dependency>  
-    
+      
+     <!-- lombok -->  
+     <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.16.10</version>
+    </dependency>
+    	
   </dependencies>
   <build>
     <finalName>ssm</finalName>

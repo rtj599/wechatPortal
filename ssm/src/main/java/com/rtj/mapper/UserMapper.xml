@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.rtj.dao.IUserDao">
+	<resultMap id="UserResultMap" type="com.rtj.dto.User">
+		<result column="id" property="id" jdbcType="INTEGER"></result>
+		<result column="name" property="name" jdbcType="VARCHAR"></result>
+		<result column="password" property="password" jdbcType="VARCHAR"></result>
+		<result column="age" property="id" jdbcType="INTEGER"></result>
+	</resultMap>
+	
+	<!-- sql变量，下面可以用<include refid="sqlColumns"/>引用 -->
+	<sql id="sqlColumns">
+		id,name,password,age
+	</sql>
+	
+	<select id="queryByPrimaryKey" resultMap="UserResultMap" parameterType="java.lang.Integer">
+		select <include refid="sqlColumns"></include> from t_user where id={}
+	</select>
+</mapper>

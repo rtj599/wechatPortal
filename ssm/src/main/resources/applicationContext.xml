@@ -10,11 +10,16 @@
                             http://www.springframework.org/schema/mvc    
                             http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
                               
-        <!-- 对包进行扫描，实现注释驱动Bean定义，
-        同时将bean自动注入容器中使用。
-        解决了@Controller标识的类的bean的注入和使用 -->  
-        <context:annotation-config />  
-        <!-- 自动扫描 -->  
+        <!--
+        自动注册如下注解：
+        @Autowired (AutowiredAnnotationBeanPostProcessor)
+        @Resource 、@PostConstruct、@PreDestroy (CommonAnnotationBeanPostProcessor)
+        @PersistenceContext (PersistenceAnnotationBeanPostProcessor)
+        @Required (RequiredAnnotationBeanPostProcessor)
+        <context:annotation-config />  -->  
+        
+        <!--除了上述<context:annotation-config />之外的几个注解，
+        额外自动注册如下注解：@Component，@Repository，@Service，@Controller -->  
         <context:component-scan base-package="com.rtj" />  
         <!-- 导入DAO配置 -->  
         <import resource="spring-dao.xml"/>  

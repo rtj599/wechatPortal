@@ -20,7 +20,21 @@
             </property>  
         </bean>  
           
-         <!-- 添加注解驱动 -->    
+         <!--自动注册如下注解：@RequestMapping、@RequstBody、@ResponseBody、
+         @ConversionService(表单参数转换)、@NumberFormat、@DateTimeFormat、@Valid(JSR303校验)    
+  		  HandlerMapping实现类：
+  		  RequestMappingHandlerMapping
+  		  BeanNameUrlHandlerMapping
+    	 @Controller处理类
+  		  RequestMappingHandlerAdapter
+	      HttpRequestHandlerAdapter
+	      SimpleControllerHandlerAdapter
+	     @Exception处理类
+	      ExceptionHandlerExceptionResolver
+	      ResponseStatusExceptionResolver
+	      DefaultHandlerExceptionResolver
+         
+         -->    
         <mvc:annotation-driven />  
         <mvc:default-servlet-handler/>  
           
