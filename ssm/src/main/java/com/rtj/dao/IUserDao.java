@@ -18,7 +18,7 @@ public interface IUserDao {
       
     public void delteUserByBatch(Map<String,Object> params);  
       
-    public void updateByPrimaryKey(Integer id);  
+    public void updateByPrimaryKey(User user);  
   
     public List<User> getAllUser();  
 }
