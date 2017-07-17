@@ -25,11 +25,11 @@
   		  HandlerMapping实现类：
   		  RequestMappingHandlerMapping
   		  BeanNameUrlHandlerMapping
-    	 @Controller处理类
+    	 @Controller处理类：
   		  RequestMappingHandlerAdapter
 	      HttpRequestHandlerAdapter
 	      SimpleControllerHandlerAdapter
-	     @Exception处理类
+	     @Exception处理类：
 	      ExceptionHandlerExceptionResolver
 	      ResponseStatusExceptionResolver
 	      DefaultHandlerExceptionResolver

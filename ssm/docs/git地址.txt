@@ -1,0 +1,5 @@
+URI: https://git.oschina.net/rtj599/ssm.git
+Host: git.oschina.net
+Repository path: /rtj599/ssm.git
+Protocol: https
+User:rtj599@yeah.net
