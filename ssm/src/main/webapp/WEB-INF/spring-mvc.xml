@@ -35,7 +35,18 @@
 	      DefaultHandlerExceptionResolver
          
          -->    
-        <mvc:annotation-driven />  
+        <mvc:annotation-driven >
+        	<!-- responseBody返回json编码设置为UTF8，不设置则默认为iso8895-1 中文显示为? -->
+        	<mvc:message-converters>
+           		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                	<constructor-arg value="UTF-8" />
+            	</bean>
+            </mvc:message-converters>
+            <!-- end 编码设置 -->
+        </mvc:annotation-driven>  
+        
+        <!--  servlet在找页面时，走的是dispatcherServlet路线。找不到的时候会报404。
+        加上这个默认的servlet时候，servlet在找不到的时候会去找静态的内容。 -->
         <mvc:default-servlet-handler/>  
           
         <!-- 设置使用注解的类所在的包 -->  
