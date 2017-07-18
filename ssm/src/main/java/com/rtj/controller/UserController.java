@@ -4,13 +4,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
 import com.rtj.beans.response.user.UserResponseBean;
 import com.rtj.constant.ReturnEnums;
 import com.rtj.dto.User;
+import com.rtj.framework.annotation.Router;
+import com.rtj.framework.annotation.SubTransType;
+import com.rtj.framework.annotation.TransType;
 import com.rtj.service.IUserService;
 import com.rtj.utils.SerializeUtil;
 
@@ -21,20 +24,21 @@ import com.rtj.utils.SerializeUtil;
  * 		并添加AsyncRestTemplate 属性,支持REST异步无阻塞通信
  * @author RTJ
  */
-@RestController
-@RequestMapping("/user")
+@Component
+@Router
+@TransType("user")
 public class UserController {
 	@Resource
 	private IUserService userService;
 	
-	@RequestMapping("/userList")
-	public String userList (HttpServletRequest req){
+	@SubTransType("userList")
+	public String userList (HttpServletRequest req,HttpServletResponse rsp){
         List<User> uList = userService.getAllUser();  
-        UserResponseBean rsp=new UserResponseBean();
-        rsp.setUserList(uList);
-        rsp.setResponseCode(uList.size()==0?ReturnEnums.RETURN_SUCCESS_NODATA.getCode():ReturnEnums.RETURN_SUCCESS.getCode());
-        rsp.setResponseDesc(uList.size()==0?ReturnEnums.RETURN_SUCCESS_NODATA.getDesc():ReturnEnums.RETURN_SUCCESS.getDesc());
-		return SerializeUtil.serialize(rsp);
+        UserResponseBean rspBean=new UserResponseBean();
+        rspBean.setUserList(uList);
+        rspBean.setResponseCode(uList.size()==0?ReturnEnums.RETURN_SUCCESS_NODATA.getCode():ReturnEnums.RETURN_SUCCESS.getCode());
+        rspBean.setResponseDesc(uList.size()==0?ReturnEnums.RETURN_SUCCESS_NODATA.getDesc():ReturnEnums.RETURN_SUCCESS.getDesc());
+		return SerializeUtil.serialize(rspBean);
 
 	}
 }
