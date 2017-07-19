@@ -1,4 +1,4 @@
-package com.rtj.controller;
+package com.rtj.framework.controller;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -11,6 +11,8 @@ import lombok.extern.log4j.Log4j;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,11 +22,11 @@ import com.rtj.constant.ReturnEnums;
 import com.rtj.framework.annotation.Router;
 import com.rtj.framework.annotation.SubTransType;
 import com.rtj.framework.annotation.TransType;
-import com.rtj.utils.SerializeUtil;
+import com.rtj.framework.utils.SerializeUtil;
 
 /**
  * 基础控制器
- * 根据注解和请求报文头的transType和subTransType决定调用类
+ * 解析注解和请求报文头的transType和subTransType调用类
  * @description 
  * @author RTJ
  */
@@ -36,6 +38,13 @@ public class BaseController {
     
 	@RequestMapping(method=RequestMethod.POST,value="/portal.do")
 	public String dispatchRequest(HttpServletRequest req,HttpServletResponse rsp){
+		
+		@SuppressWarnings("unchecked")
+		//redis 
+		final RedisTemplate<String, Object> redisTemplate  = ac.getBean("redisTemplate",RedisTemplate.class);  
+		ValueOperations<String, Object> jc = redisTemplate.opsForValue();
+		jc.set("test", "1234.com");
+        System.out.println(jc.get("test"));
 		String transType=req.getHeader("transType");
 		String subTransType=req.getHeader("subTransType");
 		Map<String,Object>routers=ac.getBeansWithAnnotation(Router.class);
@@ -51,7 +60,7 @@ public class BaseController {
 					SubTransType subTrans=m.getAnnotation(SubTransType.class);
 					if(subTrans.value().equals(subTransType)){
 						try {
-							return (String) m.invoke(ac.getBean("userController"), req, rsp);
+							return (String) m.invoke(ac.getBean(en.getKey()), req, rsp);
 						} catch (Exception e) {
 							log.error(e.getMessage(),e);
 							return errJsonResp(ReturnEnums.RETURN_ERROR_JSON);
@@ -64,6 +73,11 @@ public class BaseController {
 		return errJsonResp(ReturnEnums.RETURN_ERROR_NOTRANSTYPE);
 	}
 	
+	/**
+	 * 返回错误报文
+	 * @param returnMsg
+	 * @return
+	 */
 	private String errJsonResp(ReturnEnums returnMsg){
 		BaseResponseBean rspBean=new BaseResponseBean();
 		rspBean.setResponseCode(returnMsg.getCode());

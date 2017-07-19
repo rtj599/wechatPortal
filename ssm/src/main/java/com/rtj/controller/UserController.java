@@ -14,8 +14,8 @@ import com.rtj.dto.User;
 import com.rtj.framework.annotation.Router;
 import com.rtj.framework.annotation.SubTransType;
 import com.rtj.framework.annotation.TransType;
+import com.rtj.framework.utils.SerializeUtil;
 import com.rtj.service.IUserService;
-import com.rtj.utils.SerializeUtil;
 
 
 /**

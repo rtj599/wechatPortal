@@ -1,4 +1,4 @@
-package com.rtj.utils;
+package com.rtj.framework.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
