@@ -11,8 +11,6 @@ import lombok.extern.log4j.Log4j;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +20,7 @@ import com.rtj.constant.ReturnEnums;
 import com.rtj.framework.annotation.Router;
 import com.rtj.framework.annotation.SubTransType;
 import com.rtj.framework.annotation.TransType;
+import com.rtj.framework.utils.RedisExecutor;
 import com.rtj.framework.utils.SerializeUtil;
 
 /**
@@ -38,15 +37,8 @@ public class BaseController {
     
 	@RequestMapping(method=RequestMethod.POST,value="/portal.do")
 	public String dispatchRequest(HttpServletRequest req,HttpServletResponse rsp){
-		
-		@SuppressWarnings("unchecked")
-		//redis 
-		final RedisTemplate<String, Object> redisTemplate  = ac.getBean("redisTemplate",RedisTemplate.class);  
-		ValueOperations<String, Object> jc = redisTemplate.opsForValue();
-		jc.set("test", "1234.com");
-        System.out.println(jc.get("test"));
-		String transType=req.getHeader("transType");
-		String subTransType=req.getHeader("subTransType");
+		String transType=req.getHeader("transType").trim();
+		String subTransType=req.getHeader("subTransType").trim();
 		Map<String,Object>routers=ac.getBeansWithAnnotation(Router.class);
 		//根据TransType定位类
 		for(Entry<String,Object> en:routers.entrySet()){
