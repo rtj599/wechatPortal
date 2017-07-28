@@ -20,22 +20,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import lombok.extern.slf4j.Slf4j;
 
-
-
-/** 
-*@project_name:CSDWebside  
-*@Description:(该类的功能及其特点的描述)
-*@Copyright (版权)：上海睿民互联网科技有限公司  Copyright (c) 2015
-*@author wanggengle(王庚乐) <wanggengle@rmitec.cn>
-*@since (该文件支持的jdk版本):JDK1.7
-*@date (开发时间) Nov 4, 2015 3:15:27 PM
-*@update  (最后修改时间) Nov 4, 2015 3:15:27 PM
-*@version V1.0  
-* 
-*@modifier 修改人：
-*@reviewer 复审人：
-*                               
-*/
 @Slf4j
 public class AES extends Coder {
 

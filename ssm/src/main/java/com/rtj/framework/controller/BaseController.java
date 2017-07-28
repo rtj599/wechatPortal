@@ -20,7 +20,6 @@ import com.rtj.constant.ReturnEnums;
 import com.rtj.framework.annotation.Router;
 import com.rtj.framework.annotation.SubTransType;
 import com.rtj.framework.annotation.TransType;
-import com.rtj.framework.utils.RedisExecutor;
 import com.rtj.framework.utils.SerializeUtil;
 
 /**

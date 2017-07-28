@@ -10,21 +10,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 
-
-/** 
-*@project_name:CSDWebside  
-*@Description:(该类的功能及其特点的描述)
-*@Copyright (版权)：上海睿民互联网科技有限公司  Copyright (c) 2015
-*@author wanggengle(王庚乐) <wanggengle@rmitec.cn>
-*@since (该文件支持的jdk版本):JDK1.7
-*@date (开发时间) Nov 4, 2015 3:15:13 PM
-*@update  (最后修改时间) Nov 4, 2015 3:15:13 PM
-*@version V1.0  
-* 
-*@modifier 修改人：
-*@reviewer 复审人：
-*                               
-*/
 public abstract class Coder {
 	public static final String KEY_SHA = "SHA";
 	public static final String KEY_MD5 = "MD5";
