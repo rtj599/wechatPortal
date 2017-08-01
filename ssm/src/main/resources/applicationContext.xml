@@ -9,23 +9,13 @@
                             http://www.springframework.org/schema/context/spring-context-3.1.xsd    
                             http://www.springframework.org/schema/mvc    
                             http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
-                              
-        <!--
-        自动注册如下注解：
-        @Autowired (AutowiredAnnotationBeanPostProcessor)
-        @Resource 、@PostConstruct、@PreDestroy (CommonAnnotationBeanPostProcessor)
-        @PersistenceContext (PersistenceAnnotationBeanPostProcessor)
-        @Required (RequiredAnnotationBeanPostProcessor)
-        <context:annotation-config />  -->  
-        
-        <!--除了上述<context:annotation-config />之外的几个注解，
-        额外自动注册如下注解：@Component，@Repository，@Service，@Controller -->  
         <context:component-scan base-package="com.rtj" />  
         <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
             <property name="locations" >
             	<list>
             		<value>classpath:redis.properties</value>
             		<value>classpath:jdbc.properties</value>
+            		<value>classpath:ext_wechat.properties</value>
             	</list>
             </property>  
         </bean> 

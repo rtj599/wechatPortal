@@ -40,8 +40,17 @@
         加上这个默认的servlet时候，servlet在找不到的时候会去找静态的内容。 -->
         <mvc:default-servlet-handler/>  
           
-        <!-- 设置使用注解的类所在的包 -->  
-        <context:component-scan base-package="com.rtj.framework.controller" />  
+          <!--
+        自动注册如下注解：
+        @Autowired (AutowiredAnnotationBeanPostProcessor)
+        @Resource 、@PostConstruct、@PreDestroy (CommonAnnotationBeanPostProcessor)
+        @PersistenceContext (PersistenceAnnotationBeanPostProcessor)
+        @Required (RequiredAnnotationBeanPostProcessor)
+        <context:annotation-config />  -->  
+        
+        <!--除了上述<context:annotation-config />之外的几个注解，
+        额外自动注册如下注解：@Component，@Repository，@Service，@Controller -->  
+        <context:component-scan base-package="com.rtj" />  
           
         <!-- 定义跳转的文件的前后缀 ，视图模式配置-->  
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  

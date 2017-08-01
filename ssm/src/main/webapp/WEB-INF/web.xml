@@ -52,5 +52,16 @@
             <servlet-name>SpringMVC</servlet-name>  
             <url-pattern>/</url-pattern>  
         </servlet-mapping>  
+     
+        <!--微信接入校验及开启定时刷新ACCESS_TOKEN任务-->  
+        <servlet>  
+            <servlet-name>WechatInitServlet</servlet-name>  
+            <servlet-class>com.rtj.wechat.validation.WechatInitServlet</servlet-class>  
+            <load-on-startup>2</load-on-startup>  
+        </servlet>  
+        <servlet-mapping>  
+            <servlet-name>WechatInitServlet</servlet-name>  
+            <url-pattern>/wechatvalidation.do</url-pattern>  
+        </servlet-mapping>
           
     </web-app>  
