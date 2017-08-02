@@ -9,49 +9,7 @@
                             http://www.springframework.org/schema/context/spring-context-3.1.xsd    
                             http://www.springframework.org/schema/mvc    
                             http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
-                              
- 
-         <!--自动注册如下注解：@RequestMapping、@RequstBody、@ResponseBody、
-         @ConversionService(表单参数转换)、@NumberFormat、@DateTimeFormat、@Valid(JSR303校验)    
-  		  HandlerMapping实现类：
-  		  RequestMappingHandlerMapping
-  		  BeanNameUrlHandlerMapping
-    	 @Controller处理类：
-  		  RequestMappingHandlerAdapter
-	      HttpRequestHandlerAdapter
-	      SimpleControllerHandlerAdapter
-	     @Exception处理类：
-	      ExceptionHandlerExceptionResolver
-	      ResponseStatusExceptionResolver
-	      DefaultHandlerExceptionResolver
-         
-         -->    
-        <mvc:annotation-driven >
-        	<!-- responseBody返回json编码设置为UTF8，不设置则默认为iso8895-1 中文显示为? -->
-        	<mvc:message-converters>
-           		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                	<constructor-arg value="UTF-8" />
-            	</bean>
-            </mvc:message-converters>
-            <!-- end 编码设置 -->
-        </mvc:annotation-driven>  
-        
-        <!--  servlet在找页面时，走的是dispatcherServlet路线。找不到的时候会报404。
-        加上这个默认的servlet时候，servlet在找不到的时候会去找静态的内容。 -->
-        <mvc:default-servlet-handler/>  
-          
-          <!--
-        自动注册如下注解：
-        @Autowired (AutowiredAnnotationBeanPostProcessor)
-        @Resource 、@PostConstruct、@PreDestroy (CommonAnnotationBeanPostProcessor)
-        @PersistenceContext (PersistenceAnnotationBeanPostProcessor)
-        @Required (RequiredAnnotationBeanPostProcessor)
-        <context:annotation-config />  -->  
-        
-        <!--除了上述<context:annotation-config />之外的几个注解，
-        额外自动注册如下注解：@Component，@Repository，@Service，@Controller -->  
-        <context:component-scan base-package="com.rtj" />  
-          
+                                  
         <!-- 定义跳转的文件的前后缀 ，视图模式配置-->  
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
             <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->  

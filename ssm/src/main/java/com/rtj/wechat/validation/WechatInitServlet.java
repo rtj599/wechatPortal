@@ -44,6 +44,10 @@ public class WechatInitServlet extends HttpServlet  {
 		PrintWriter out = rsp.getWriter(); 
 		//校验通过则将echostr原封不动返回
 		if(checkSignature(signature,time,nonce)){
+			log.info("校验成功！"+echostr);
+			out.println(echostr);
+		}else{
+			log.info("校验失败！");
 			out.println(echostr);
 		}
 		out.close();

@@ -215,6 +215,18 @@
       <version>1.7.2.RELEASE</version>  
     </dependency>
       <!--end redis -->  	
+      <!-- httpclient -->
+     <dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.3.5</version>
+	 </dependency>
+	 <dependency>
+    	<groupId>org.apache.httpcomponents</groupId>
+    	<artifactId>httpcore</artifactId>
+    	<version>4.3.2</version>
+	</dependency>
+	<!--end httpclient -->
   </dependencies>
   <build>
     <finalName>ssm</finalName>

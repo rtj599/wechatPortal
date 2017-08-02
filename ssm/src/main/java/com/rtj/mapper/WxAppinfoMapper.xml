@@ -8,25 +8,23 @@
         <result column="ACCESS_TOKEN" property="accessToken" jdbcType="VARCHAR" />
     </resultMap> 
     <sql id="Base_Column_List">  
-        id, app_id, app_secret, access_token  
+        ID, APP_ID, APP_SECRET, ACCESS_TOKEN  
     </sql>  
   
     <!-- 查询-->  
    <select id="queryById" resultMap="BaseResultMap"  
        parameterType="java.lang.Integer">  
-       select  <include refid="Base_Column_List" />   from t_wx_appinfo  
+       select  <include refid="Base_Column_List" />   from T_WX_APPINFO  
        where ID = #{id,jdbcType=INTEGER}  
    </select>  
 
    <!-- 更新用户 -->  
     <update id="updateAccessToken" parameterType="java.lang.String" >    
-        update t_wx_appinfo    
+        update T_WX_APPINFO    
         <set >    
-          <if test="accessToken != null" >    
-            access_token = #{accessToken,jdbcType=VARCHAR},    
-          </if>    
+            ACCESS_TOKEN = #{1},    
         </set>    
-       where app_id = #{appId,jdbcType=VARCHAR}  
+       where APP_ID = #{0}  
     </update>  
     
 </mapper>  
